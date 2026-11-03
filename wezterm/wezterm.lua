@@ -136,6 +136,10 @@ config.keys = {
   -- Copy / paste (Ctrl+Shift+C / V)
   { key = 'c', mods = 'CTRL|SHIFT', action = act.CopyTo 'Clipboard' },
   { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
+
+  -- Ctrl+V -> Alt+V: some TUIs paste clipboard images/text on Alt+V; plain
+  -- Ctrl+V would otherwise reach the app as a raw control character.
+  { key = 'v', mods = 'CTRL', action = act.SendKey { key = 'v', mods = 'ALT' } },
 }
 
 -- ────────────────────────────────────────────────────────────────────────────

@@ -37,8 +37,9 @@ Paths below are the ones this setup uses. Adjust them if your tools live elsewhe
    Needs a Nerd Font (`JetBrainsMono Nerd Font`) and the Segoe Fluent Icons font (ships with Windows 11).
 2. **whkd (launchers)** — copy `whkd/whkdrc` to `%USERPROFILE%\.config\whkdrc` and run `whkd.exe`. To start it at login:
    ```powershell
-   Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name whkd -Value '"D:\Tools\whkd\whkd.exe"'
+   Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name whkd -Value '"C:\Windows\System32\conhost.exe" --headless "D:\Tools\whkd\whkd.exe"'
    ```
+   `conhost.exe --headless` matters: `whkd.exe` is a console app, and if Windows Terminal is your default terminal it would otherwise adopt the console and show a stray minimized window (a small caption bar in the corner when the Windows taskbar is hidden).
    The launcher paths inside `whkdrc` are the author's; edit them.
    **Komorebi (optional tiling)** — only if you want window tiling: copy `komorebi/komorebi.json`, `applications.json` and `komorebi.bar.json` to `%USERPROFILE%\.config\komorebi\`, use `komorebi/whkdrc.full-tiling` as your `whkdrc`, and start it with `komorebic start --whkd`.
    `komorebi.json` has one absolute path to `applications.json` with the author's username in it; edit it.
@@ -46,11 +47,17 @@ Paths below are the ones this setup uses. Adjust them if your tools live elsewhe
 3. **Mica For Everyone** — copy `mica/MicaForEveryone.conf` next to `MicaForEveryone.exe` (this setup also keeps an identical copy in `%LOCALAPPDATA%\Mica For Everyone\`). Restart Mica For Everyone.
    The `CabinetWClass` (File Explorer) rule is deliberately set to no backdrop, because Windhawk styles Explorer instead and stacking both double-blurs it.
 4. **WezTerm** — copy `wezterm/wezterm.lua` to `%USERPROFILE%\.wezterm.lua`. Requires a WezTerm build with `win32_system_backdrop` (20240203 works).
+   Text paste is `Ctrl+Shift+V`. Plain `Ctrl+V` is remapped to send `Alt+V` to the running app, for TUIs that paste clipboard images on `Alt+V` (WezTerm would otherwise pass a raw control character).
 5. **Terminal startup** — copy `terminal/` to `D:\Tools\terminal\` (or edit the paths inside `profile.ps1` and `fastfetch.jsonc`), then point both PowerShell profiles at it:
    ```powershell
    ". 'D:\Tools\terminal\profile.ps1'" | Set-Content $PROFILE.CurrentUserCurrentHost
    ```
    Install Fastfetch and oh-my-posh (`winget install Fastfetch-cli.Fastfetch JanDeDobbeleer.OhMyPosh`).
+   **Wallpaper color watcher (optional)** — `wallwatch.ps1` re-runs `wallmatch.ps1` whenever the wallpaper changes. Run it at login with a scheduled task, started headless so it never opens a terminal window:
+   ```powershell
+   $a = New-ScheduledTaskAction -Execute 'C:\Windows\System32\conhost.exe' -Argument '--headless powershell.exe -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "D:\Tools\terminal\wallwatch.ps1"'
+   Register-ScheduledTask -TaskName TerminalWallMatch -Action $a -Trigger (New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME)
+   ```
 6. **Accent color** — double-click `windows/accent-sage.reg`, then sign out and back in. This is per-user (HKCU) only.
 
 ## File Explorer (Windhawk)
@@ -79,5 +86,6 @@ Disable the mod's toggle in Windhawk to revert Explorer instantly.
 
 - YASB / WezTerm / Mica: restore your previous config files and reload each tool. YASB autostart: `yasbc disable-autostart`.
 - whkd: remove the `whkd` value from `HKCU\...\Run` and end the process.
+- Wallpaper watcher: `Unregister-ScheduledTask -TaskName TerminalWallMatch`.
 - Accent: double-click `windows/accent-default-blue.reg`, then sign out and back in.
 - Explorer: switch off the Windhawk mod (or `winget uninstall RamenSoftware.Windhawk`).
