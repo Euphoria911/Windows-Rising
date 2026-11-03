@@ -21,7 +21,8 @@ Palette:
 | Folder | Tool | What it does |
 |---|---|---|
 | `yasb/` | [YASB](https://github.com/amnweb/yasb) v2.0.7 | Top bar: START, workspaces, active window, CAVA visualizer, media controls + album art (`media` in `controls_only` mode plus `media_lite`), clock, app taskbar with grouping, tray popup, CPU / RAM / battery / volume |
-| `komorebi/` | [Komorebi](https://github.com/LGUG2Z/komorebi) + [whkd](https://github.com/LGUG2Z/whkd) | Tiling window manager config and hotkeys |
+| `whkd/` | [whkd](https://github.com/LGUG2Z/whkd) | Hotkey daemon, used on its own for three launchers: `Alt+Enter` WezTerm, `Alt+D` Explorer, `Alt+E` Flow Launcher |
+| `komorebi/` | [Komorebi](https://github.com/LGUG2Z/komorebi) | **Optional**, not used day to day. Tiling window manager config, plus the full tiling hotkeys as `whkdrc.full-tiling` |
 | `mica/` | [Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone) 1.3.1.2 | Dark title bars and Acrylic backdrop rules per app |
 | `wezterm/` | [WezTerm](https://wezterm.org) | Olive palette, Acrylic, tabs, keybindings |
 | `terminal/` | PowerShell profile + [Fastfetch](https://github.com/fastfetch-cli/fastfetch) + [oh-my-posh](https://ohmyposh.dev) | Startup screen (Firefly logo + system info) and prompt |
@@ -34,8 +35,14 @@ Paths below are the ones this setup uses. Adjust them if your tools live elsewhe
 
 1. **YASB** — copy `yasb/config.yaml` and `yasb/styles.css` to `%USERPROFILE%\.config\yasb\`, then run `yasbc reload`.
    Needs a Nerd Font (`JetBrainsMono Nerd Font`) and the Segoe Fluent Icons font (ships with Windows 11).
-2. **Komorebi / whkd** — copy `komorebi/komorebi.json`, `applications.json` and `komorebi.bar.json` to `%USERPROFILE%\.config\komorebi\`, and `komorebi/whkdrc` to `%USERPROFILE%\.config\whkdrc`.
+2. **whkd (launchers)** — copy `whkd/whkdrc` to `%USERPROFILE%\.config\whkdrc` and run `whkd.exe`. To start it at login:
+   ```powershell
+   Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name whkd -Value '"D:\Tools\whkd\whkd.exe"'
+   ```
+   The launcher paths inside `whkdrc` are the author's; edit them.
+   **Komorebi (optional tiling)** — only if you want window tiling: copy `komorebi/komorebi.json`, `applications.json` and `komorebi.bar.json` to `%USERPROFILE%\.config\komorebi\`, use `komorebi/whkdrc.full-tiling` as your `whkdrc`, and start it with `komorebic start --whkd`.
    `komorebi.json` has one absolute path to `applications.json` with the author's username in it; edit it.
+   The YASB workspace pill shows Windows virtual desktops, so it does not depend on Komorebi.
 3. **Mica For Everyone** — copy `mica/MicaForEveryone.conf` next to `MicaForEveryone.exe` (this setup also keeps an identical copy in `%LOCALAPPDATA%\Mica For Everyone\`). Restart Mica For Everyone.
    The `CabinetWClass` (File Explorer) rule is deliberately set to no backdrop, because Windhawk styles Explorer instead and stacking both double-blurs it.
 4. **WezTerm** — copy `wezterm/wezterm.lua` to `%USERPROFILE%\.wezterm.lua`. Requires a WezTerm build with `win32_system_backdrop` (20240203 works).
@@ -70,6 +77,7 @@ Disable the mod's toggle in Windhawk to revert Explorer instantly.
 
 ## Revert
 
-- YASB / WezTerm / Komorebi / Mica: restore your previous config files and reload each tool.
+- YASB / WezTerm / Mica: restore your previous config files and reload each tool. YASB autostart: `yasbc disable-autostart`.
+- whkd: remove the `whkd` value from `HKCU\...\Run` and end the process.
 - Accent: double-click `windows/accent-default-blue.reg`, then sign out and back in.
 - Explorer: switch off the Windhawk mod (or `winget uninstall RamenSoftware.Windhawk`).

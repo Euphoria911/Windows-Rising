@@ -1,0 +1,6 @@
+.shell cmd
+
+# ─── launchers only (no window tiling; Komorebi is not used) ──────────────
+alt + return                : D:\Tools\WezTerm\wezterm-gui.exe
+alt + d                     : explorer
+alt + e                     : D:\Tools\flow-launcher\FlowLauncher\Flow.Launcher.exe
