@@ -1,0 +1,167 @@
+watch_stylesheet: true
+watch_config: true
+debug: false
+
+bars:
+  status-bar:
+    enabled: true
+    screens: ['*']
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      align: "center"
+    blur_effect:
+      enabled: true
+      dark_mode: true
+      round_corners: true
+      round_corners_type: "normal"
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "98%"
+      height: 56
+    padding:
+      top: 6
+      left: 14
+      bottom: 12
+      right: 14
+    widgets:
+      left:   ["launchpad", "windows_desktops", "active_window", "cava", "media", "media_lite"]
+      center: []
+      right:  ["clock", "taskbar", "systray", "cpu", "memory", "battery", "volume"]
+
+widgets:
+  launchpad:
+    type: "yasb.launchpad.LaunchpadWidget"
+    options:
+      label: "<span></span> START"
+
+  windows_desktops:
+    type: "yasb.windows_desktops.WorkspaceWidget"
+    options:
+      label_workspace_btn: "{index}"
+
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      max_length: 12
+      max_length_ellipsis: "…"
+      label_no_window: " "
+
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%H:%M  %a, %b %d}"
+      label_alt: "{%H:%M:%S}"
+
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: "<span></span> {info[percent][total]}%"
+      hide_decimal: true
+      update_interval: 2000
+
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "<span>\U000F035B</span> {virtual_mem_percent}%"
+      hide_decimal: true
+      update_interval: 5000
+
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      tooltip: true
+
+  cava:
+    type: "yasb.audio_visualizer.AudioVisualizerWidget"
+    options:
+      style: "bars"
+      height: 20
+      framerate: 60
+      hide_idle: false
+      hide_idle_after: 2000
+      auto_gain: true
+      sensitivity: 60
+      smoothness: 70
+      channels: "stereo"
+      mono_option: "average"
+      freq_min: 50
+      freq_max: 10000
+      mirror: false
+      reverse: false
+      bars:
+        count: 14
+        width: 3
+        gap: 2
+
+  media:
+    type: "yasb.media.MediaWidget"
+    options:
+      label: "{title} - {artist}"
+      label_alt: "{title}"
+      hide_empty: true
+      show_thumbnail: false
+      controls_only: true
+      controls_left: true
+      icons:
+        prev_track: ""
+        next_track: ""
+        play: ""
+        pause: ""
+
+  media_lite:
+    type: "yasb.media_lite.MediaWidget"
+    options:
+      show_thumbnail: true
+      show_title: true
+      show_artist: true
+      scrolling_label: false
+      image_size: 28
+      thumbnail_corner_radius: 6
+      max_label_size: 14
+      tooltip: true
+      callbacks:
+        on_left: "toggle_media_menu"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+
+  taskbar:
+    type: "yasb.taskbar.TaskbarWidget"
+    options:
+      icon_size: 18
+      tooltip: true
+      animation:
+        enabled: true
+        duration: 180
+      grouping:
+        enabled: true
+        show_count: true
+      ignore_apps:
+        processes: ["ApplicationFrameHost.exe","SystemSettings.exe"]
+        titles: []
+      preview:
+        enabled: true
+        width: 240
+        delay: 400
+        margin: 8
+        padding: 6
+
+  systray:
+    type: "yasb.systray.SystrayWidget"
+    options:
+      icon_size: 16
+      pin_click_modifier: "alt"
+      show_unpinned: true
+      show_in_popup: true
+      show_battery: false
+      show_volume: false
+      show_network: false

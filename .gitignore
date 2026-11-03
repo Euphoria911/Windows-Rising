@@ -1,0 +1,7 @@
+# backups, logs and local state
+*.bak
+*.bak.*
+*.broken.*
+*.log
+*.log.out
+*.out

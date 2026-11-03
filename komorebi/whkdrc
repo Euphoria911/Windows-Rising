@@ -1,0 +1,56 @@
+.shell cmd
+
+# ─── reload ────────────────────────────────────────────────────────────────
+alt + r                     : D:\Tools\komorebi\komorebic.exe reload-configuration
+
+# ─── focus (vim-style) ─────────────────────────────────────────────────────
+alt + h                     : D:\Tools\komorebi\komorebic.exe focus left
+alt + j                     : D:\Tools\komorebi\komorebic.exe focus down
+alt + k                     : D:\Tools\komorebi\komorebic.exe focus up
+alt + l                     : D:\Tools\komorebi\komorebic.exe focus right
+
+# ─── workspaces (focus) ───────────────────────────────────────────────────
+alt + 1                     : D:\Tools\komorebi\komorebic.exe focus-workspace 0
+alt + 2                     : D:\Tools\komorebi\komorebic.exe focus-workspace 1
+alt + 3                     : D:\Tools\komorebi\komorebic.exe focus-workspace 2
+alt + 4                     : D:\Tools\komorebi\komorebic.exe focus-workspace 3
+alt + 5                     : D:\Tools\komorebi\komorebic.exe focus-workspace 4
+
+# ─── layouts ───────────────────────────────────────────────────────────────
+alt + y                     : D:\Tools\komorebi\komorebic.exe change-layout bsp
+alt + u                     : D:\Tools\komorebi\komorebic.exe change-layout vertical-stack
+alt + i                     : D:\Tools\komorebi\komorebic.exe change-layout horizontal-stack
+alt + o                     : D:\Tools\komorebi\komorebic.exe change-layout ultrawide-vertical-stack
+alt + p                     : D:\Tools\komorebi\komorebic.exe toggle-monocle
+
+# ─── window ops (no more shift) ───────────────────────────────────────────
+alt + t                     : D:\Tools\komorebi\komorebic.exe toggle-float
+alt + f                     : D:\Tools\komorebi\komorebic.exe toggle-maximize
+alt + g                     : D:\Tools\komorebi\komorebic.exe promote
+alt + c                     : D:\Tools\komorebi\komorebic.exe close-window
+
+# ─── launchers ────────────────────────────────────────────────────────────
+alt + return                : D:\Tools\WezTerm\wezterm-gui.exe
+alt + d                     : explorer
+alt + e                     : D:\Tools\flow-launcher\FlowLauncher\Flow.Launcher.exe
+
+# ─── MOVE MODE (press Alt+M once, then within 1.5s press target) ─────────
+# Resize: Alt+- shrinks, Alt+= grows (horizontal); Alt+Shift kept only here
+# because the key itself is the direction and we need H/V distinction.
+alt + oem_minus             : D:\Tools\komorebi\komorebic.exe resize-axis horizontal decrease
+alt + oem_plus              : D:\Tools\komorebi\komorebic.exe resize-axis horizontal increase
+
+# Move window to workspace (Alt+M chord)
+# NOTE: whkd lacks chord/leader-key support, so move-to-workspace uses the
+# function keys instead of a chord — zero Shift required:
+alt + F1                    : D:\Tools\komorebi\komorebic.exe move-to-workspace 0
+alt + F2                    : D:\Tools\komorebi\komorebic.exe move-to-workspace 1
+alt + F3                    : D:\Tools\komorebi\komorebic.exe move-to-workspace 2
+alt + F4                    : D:\Tools\komorebi\komorebic.exe move-to-workspace 3
+alt + F5                    : D:\Tools\komorebi\komorebic.exe move-to-workspace 4
+
+# Move window direction (Alt + arrow keys, no shift)
+alt + left                  : D:\Tools\komorebi\komorebic.exe move left
+alt + down                  : D:\Tools\komorebi\komorebic.exe move down
+alt + up                    : D:\Tools\komorebi\komorebic.exe move up
+alt + right                 : D:\Tools\komorebi\komorebic.exe move right

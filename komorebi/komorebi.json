@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 10,
+  "default_container_padding": 10,
+  "floating_layer_behaviour": "Float",
+  "unmanaged_window_operation_behaviour": "Op",
+  "window_container_behaviour": "Create",
+  "border": true,
+  "border_width": 2,
+  "border_offset": -1,
+  "border_style": "Rounded",
+  "border_colours": {
+    "single":  "#c7b89a",
+    "stack":   "#486048",
+    "monocle": "#866e6e"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 60,
+    "fps": 60,
+    "style": "Linear"
+  },
+  "app_specific_configuration_path": "C:/Users/umidl/.config/komorebi/applications.json",
+  "transparency": false,
+  "transparency_alpha": 230,
+  "floating_applications": [
+    { "kind": "Exe", "id": "Discord.exe",       "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "Telegram.exe",      "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "Spotify.exe",       "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "Lively.exe",        "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "mpv.exe",           "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "vlc.exe",           "matching_strategy": "Equals" },
+    { "kind": "Exe", "id": "ApplicationFrameHost.exe", "matching_strategy": "Equals" }
+  ],
+  "monitors": [
+    {
+      "workspaces": [
+        { "name": "1", "layout": "BSP" },
+        { "name": "2", "layout": "BSP" },
+        { "name": "3", "layout": "BSP" },
+        { "name": "4", "layout": "BSP" },
+        { "name": "5", "layout": "BSP" }
+      ]
+    }
+  ]
+}

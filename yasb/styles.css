@@ -1,0 +1,437 @@
+/* ─── Palette (matched to current wallpaper) ────────────────────────────
+ *  bg       #1a1e18   deep olive-black
+ *  bg-hi    #2a2f24   bar surface
+ *  fg       #e8e4d7   cream
+ *  fg-dim   #a8a494   muted sage
+ *  accent   #c7b89a   warm khaki
+ *  moss     #486048   mid olive
+ *  rose     #866e6e   dusty rose (for warnings/battery low)
+ * ────────────────────────────────────────────────────────────────────── */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Segoe UI", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e8e4d7;
+}
+
+.yasb-bar {
+    background-color: rgba(26, 30, 24, 0.78);
+}
+
+.widget {
+    padding: 2px 10px;
+    margin: 0 3px;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #e8e4d7;
+}
+
+.widget .label { padding: 0 2px; }
+.widget:hover  { background-color: rgba(199, 184, 154, 0.10); }
+
+/* ─── Workspaces ─────────────────────────────────────────────────────── */
+.komorebi-workspaces .ws-btn {
+    background-color: transparent;
+    color: #6e6e5a;
+    border: none;
+    padding: 2px 10px;
+    margin: 0 2px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.komorebi-workspaces .ws-btn.active_workspace {
+    color: #1a1e18;
+    background-color: #c7b89a;
+}
+.komorebi-workspaces .ws-btn.populated_workspace { color: #c7b89a; }
+.komorebi-workspaces .ws-btn:hover {
+    background-color: rgba(199, 184, 154, 0.14);
+}
+
+/* ─── Active layout ──────────────────────────────────────────────────── */
+.komorebi-active-layout {
+    color: #a8a494;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Active window ──────────────────────────────────────────────────── */
+.active-window-widget { color: #A9B4A0; font-weight: 500; min-width: 108px; max-width: 108px; }
+
+/* ─── Clock (center, slightly bigger) ────────────────────────────────── */
+.clock-widget {
+    color: #e8e4d7;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* ─── Right-side metrics (compact: % numbers only, hover tooltip) ─────── */
+.cpu-widget,
+.memory-widget,
+.battery-widget,
+.volume-widget,
+.wifi-widget {
+    color: #a8a494;
+    padding: 2px 6px;
+    margin: 0 1px;
+    font-size: 11px;
+    font-weight: 600;
+}
+/* Small Nerd Font glyph before each reading (icon spans only) */
+.cpu-widget .icon,
+.memory-widget .icon,
+.battery-widget .icon,
+.volume-widget .icon {
+    font-family: "JetBrainsMono NF", "Segoe Fluent Icons";
+    color: #c7b89a;
+    font-size: 11px;
+    font-weight: 400;
+}
+.cpu-widget      { border-left: 2px solid #c7b89a; border-radius: 4px; }
+.memory-widget   { border-left: 2px solid #486048; border-radius: 4px; }
+.battery-widget  { border-left: 2px solid #a8a494; border-radius: 4px; }
+.volume-widget   { border-left: 2px solid #866e6e; border-radius: 4px; }
+
+/* ─── Taskbar (open apps) — breathing room + rounded pills ──────────── */
+.taskbar-widget {
+    background-color: transparent;
+    padding: 2px 8px;
+}
+.taskbar-widget .app-icon {
+    padding: 2px 6px;
+    margin: 0 4px;
+    border-radius: 8px;
+    background-color: transparent;
+    opacity: 0.7;
+    border: 1px solid transparent;
+    min-width: 22px;
+    min-height: 22px;
+}
+.taskbar-widget .app-icon:hover {
+    opacity: 1.0;
+    background-color: rgba(199, 184, 154, 0.12);
+    border: 1px solid rgba(199, 184, 154, 0.22);
+}
+.taskbar-widget .app-icon.foreground,
+.taskbar-widget .app-icon.active {
+    opacity: 1.0;
+    background-color: rgba(199, 184, 154, 0.22);
+    border: 1px solid #c7b89a;
+}
+
+/* ─── Systray ────────────────────────────────────────────────────────── */
+.systray {
+    padding: 0 4px;
+    background-color: transparent;
+}
+.systray .systray-item {
+    padding: 2px 4px;
+    margin: 0 1px;
+    border-radius: 4px;
+}
+.systray .systray-item:hover {
+    background-color: rgba(199, 184, 154, 0.14);
+}
+/* Unpinned-icons toggle: collapsed = subtle khaki, expanded (checked) = sage */
+.systray .unpinned-visibility-btn {
+    background-color: rgba(199, 184, 154, 0.10);
+    border: 1px solid rgba(199, 184, 154, 0.22);
+    border-radius: 6px;
+    color: #c7b89a;
+}
+.systray .unpinned-visibility-btn:checked {
+    background-color: rgba(112, 138, 108, 0.60);
+    border: 1px solid rgba(199, 184, 154, 0.40);
+    color: #e8e4d7;
+}
+.systray .unpinned-visibility-btn:hover {
+    background-color: rgba(199, 184, 154, 0.22);
+}
+
+/* ─── Audio visualizer (bars tinted khaki) ───────────────────────────── */
+.audio-visualizer-widget {
+    padding: 0 6px;
+    margin: 0 4px;
+    background-color: transparent;
+}
+.audio-visualizer-canvas {
+    qproperty-fillbrush: #c7b89a;
+    color: #c7b89a;
+    background-color: transparent;
+}
+
+/* ─── Media controls (standard widget, controls_only) ────────────────── */
+.media-widget {
+    padding: 2px 4px;
+    margin: 0 2px 0 6px;
+    color: #e8e4d7;
+    background-color: rgba(72, 96, 72, 0.32);
+    border: 1px solid rgba(199, 184, 154, 0.26);
+    border-radius: 18px;
+    min-height: 34px;
+    max-height: 34px;
+}
+.media-widget .btn {
+    font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", "Segoe UI";
+    color: #c7b89a;
+    padding: 0 4px;
+    margin: 0 2px;
+    font-size: 14px;
+    font-weight: 400;
+    min-width: 24px;
+    min-height: 24px;
+    max-height: 24px;
+    border-radius: 12px;
+    background-color: rgba(199, 184, 154, 0.10);
+    border: 1px solid rgba(199, 184, 154, 0.22);
+}
+.media-widget .btn:hover {
+    color: #1a1e18;
+    background-color: #c7b89a;
+    border: 1px solid #c7b89a;
+}
+.media-widget .btn.play {
+    font-size: 15px;
+    min-width: 28px;
+    min-height: 28px;
+    max-height: 28px;
+    border-radius: 14px;
+    color: #e8e4d7;
+    background-color: rgba(72, 96, 72, 0.55);
+    border: 1px solid #c7b89a;
+}
+.media-widget .btn.play:hover {
+    color: #1a1e18;
+    background-color: #c7b89a;
+    border: 1px solid #c7b89a;
+}
+
+/* ─── Media Lite (album thumbnail + title/artist) ────────────────────── */
+.media-lite-widget {
+    padding: 2px 12px 2px 3px;
+    margin: 0 6px 0 2px;
+    background-color: rgba(72, 96, 72, 0.32);
+    border: 1px solid rgba(199, 184, 154, 0.26);
+    border-radius: 18px;
+    min-height: 34px;
+    max-height: 34px;
+    min-width: 130px;   /* content-box: fixed so a 14-char title never clips or shifts */
+    max-width: 130px;
+}
+.media-lite-widget .text {
+    padding: 0 0 0 6px;
+    background-color: transparent;
+}
+.media-lite-widget .title {
+    color: #e8e4d7;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0 2px;
+    background-color: transparent;
+}
+.media-lite-widget .artist {
+    color: #a8a494;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 0 2px;
+    background-color: transparent;
+}
+
+/* ─── Launchpad trigger (app launcher) ───────────────────────────────── */
+.launchpad-widget {
+    color: #c7b89a;
+    padding: 2px 10px;
+    font-weight: 700;
+}
+.launchpad-widget:hover {
+    background-color: rgba(199, 184, 154, 0.14);
+}
+
+/* ═══ Stage 2a — reference alignment: START, workspaces, CAVA, music, clock ═══
+ * surface rgba(34,42,32,.72) · border rgba(69,81,63,.95) · sage #93A586
+ * highlight #B6C3A6 · text #E2E6D8 · secondary #A9B4A0
+ * (remove this whole block to revert stage 2a)                              */
+.launchpad-widget {
+    padding: 2px 14px;
+    margin: 0 4px 0 2px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 12px;
+    min-height: 34px;
+    max-height: 34px;
+    color: #E2E6D8;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.launchpad-widget .icon { font-family: "JetBrainsMono NF"; color: #93A586; font-size: 14px; }
+.launchpad-widget:hover { background-color: rgba(48, 57, 44, 0.85); }
+
+.windows-desktops {
+    padding: 2px 4px;
+    margin: 0 4px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 12px;
+    min-height: 34px;
+    max-height: 34px;
+}
+.windows-desktops .ws-btn {
+    min-width: 26px;
+    min-height: 26px;
+    max-height: 26px;
+    padding: 0 4px;
+    margin: 0 2px;
+    border: none;
+    border-radius: 9px;
+    background-color: transparent;
+    color: #A9B4A0;
+    font-weight: 600;
+}
+.windows-desktops .ws-btn.populated { color: #E2E6D8; }
+.windows-desktops .ws-btn.active { background-color: #93A586; color: #151A14; }
+.windows-desktops .ws-btn:hover { background-color: rgba(147, 165, 134, 0.22); }
+.windows-desktops .ws-btn.active:hover { background-color: #B6C3A6; }
+
+.audio-visualizer-canvas {
+    qproperty-fillbrush: #93A586;
+    color: #93A586;
+}
+
+.media-widget {
+    margin: 0 0 0 4px;
+    padding: 2px 5px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-right: none;
+    border-radius: 12px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.media-widget .btn {
+    color: #A9B4A0;
+    background-color: rgba(48, 57, 44, 0.75);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 12px;
+}
+.media-widget .btn:hover { color: #151A14; background-color: #93A586; border: 1px solid #93A586; }
+.media-widget .btn.play {
+    color: #E2E6D8;
+    background-color: rgba(147, 165, 134, 0.28);
+    border: 1px solid #93A586;
+    border-radius: 14px;
+}
+.media-widget .btn.play:hover { color: #151A14; background-color: #B6C3A6; border: 1px solid #B6C3A6; }
+.media-lite-widget {
+    margin: 0 8px 0 0;
+    padding: 2px 12px 2px 6px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-left: 1px solid rgba(69, 81, 63, 0.55);
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.media-lite-widget .title  { color: #E2E6D8; }
+.media-lite-widget .artist { color: #A9B4A0; }
+
+.clock-widget {
+    padding: 2px 8px;
+    margin: 0 4px;
+    background-color: transparent;
+    border: none;
+    color: #E2E6D8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    min-width: 118px;   /* content-box: widest "00:00  Mon, May 00" 112px + 4 label pad + 2 safety (padding is added on top) */
+    min-height: 34px;
+    max-height: 34px;
+}
+/* ═══ end stage 2a ═══ */
+
+/* ═══ Stage 2b — right side: apps container, tray pill, unified metrics ═══
+ * (remove this whole block to revert stage 2b)                              */
+.taskbar-widget {
+    padding: 2px 6px;
+    margin: 0 4px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 12px;
+    min-height: 34px;
+    max-height: 34px;
+}
+.taskbar-widget .app-container {
+    margin: 0 2px;
+    padding: 0 4px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background-color: transparent;
+}
+.taskbar-widget .app-container .app-icon {
+    opacity: 1.0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    min-width: 20px;
+    min-height: 20px;
+}
+.taskbar-widget .app-container:hover { background-color: rgba(147, 165, 134, 0.16); }
+.taskbar-widget .app-container.foreground {
+    background-color: rgba(147, 165, 134, 0.26);
+    border: 1px solid rgba(147, 165, 134, 0.60);
+}
+
+.systray {
+    padding: 2px 6px;
+    margin: 0 4px;
+    background-color: rgba(34, 42, 32, 0.72);
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 12px;
+    min-height: 34px;
+    max-height: 34px;
+}
+
+.cpu-widget,
+.memory-widget,
+.battery-widget,
+.volume-widget {
+    background-color: rgba(34, 42, 32, 0.72);
+    color: #E2E6D8;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 12px;
+    margin: 0;
+    border: 1px solid rgba(69, 81, 63, 0.95);
+    border-radius: 0;
+    min-width: 56px;
+    min-height: 34px;
+    max-height: 34px;
+}
+.cpu-widget {
+    margin-left: 6px;
+    border-right: none;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.memory-widget,
+.battery-widget {
+    border-left: 1px solid rgba(69, 81, 63, 0.55);
+    border-right: none;
+}
+.volume-widget {
+    margin-right: 2px;
+    border-left: 1px solid rgba(69, 81, 63, 0.55);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.cpu-widget:hover, .memory-widget:hover, .battery-widget:hover, .volume-widget:hover {
+    background-color: rgba(48, 57, 44, 0.85);
+}
+.cpu-widget .icon,
+.memory-widget .icon,
+.battery-widget .icon,
+.volume-widget .icon { color: #93A586; }
+/* ═══ end stage 2b ═══ */
